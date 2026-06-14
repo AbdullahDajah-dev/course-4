@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-enum enButtons { Withdraw = 1, Deposite, Exit };
+enum enButtons {Withdraw = 1, Deposite, Exit};
 
 
 int ReadPositiveNumber(string msg)
@@ -29,21 +29,21 @@ bool CheckPIN(int pin)
 	while (pin != 1234 && attempts > 1)
 	{
 		attempts--;
-		pin = ReadPIN("Wrong PIN try again, " + to_string(attempts) + " left:\n");
-
+		pin = ReadPIN("Wrong PIN try again, " +to_string(attempts) + " left:\n");
+		
 
 	}
 	return (pin == 1234);
 }
 bool UserAccess(int pin)
 {
-
+	
 	if (!CheckPIN(pin))
 	{
 		cout << "Card locked, visit your branch\n" << endl;
 		return false;
 	}
-
+	
 	cout << "Balance: 7500$\n" << endl;
 	return true;
 
@@ -102,7 +102,7 @@ string DepositeProcess(int current_balance, int deposite)
 }
 void Transactions(enButtons button_id)
 {
-
+	
 	if (button_id == enButtons::Withdraw)
 	{
 		int amount = ReadPositiveNumber("Enter amount: ");
@@ -131,21 +131,21 @@ int main()
 	int pin = ReadPIN("Enter PIN: ");
 	if (!UserAccess(pin))
 		return 0;
-
-
+	
+	
 	enButtons button_list = ButtonList();
 	string user_options = UserOptions(button_list);
 	cout << user_options << endl;
 	if (button_list == Exit)
 		return 0;
 
-
+	
 	Transactions(button_list);
+	
+	
 
 
-
-
-
+	
 
 	return 0;
 }

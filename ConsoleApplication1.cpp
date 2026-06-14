@@ -40,14 +40,16 @@ bool UserAccess(int pin)
 
 	if (!CheckPIN(pin))
 	{
+		system("color 4f");
 		cout << "Card locked, visit your branch\n" << endl;
 		return false;
 	}
+	else {
 
-	cout << "Balance: 7500$\n" << endl;
-	return true;
-
-
+		cout << "Balance: 7500$\n" << endl;
+		return true;
+	}
+	
 }
 int ReadButtonID(string msg)
 {
@@ -84,20 +86,30 @@ string UserOptions(enButtons select)
 }
 string WithdrawalProcess(int current_balance, int withdrawal)
 {
-	if (withdrawal > current_balance || withdrawal < 0)
+	if (withdrawal > current_balance || withdrawal < 1)
+	{
+		system("color 4f");
 		return "\nInvalid amount.";
-	else
+	}
+	else {
 		current_balance = current_balance - withdrawal;
-	return "\nSuccess! Your balance is " + to_string(current_balance);
+		system("color 2f");
+		return "\nSuccess! Your balance is " + to_string(current_balance);
+	}
 
 }
 string DepositeProcess(int current_balance, int deposite)
 {
 	if (deposite < 1)
+	{
+		system("color 4f");
 		return "\nInvalid amount.";
-	else
+	}
+	else {
+		system("color 2f");
 		current_balance = current_balance + deposite;
-	return "\nSuccess! Your balance is " + to_string(current_balance);
+		return "\nSuccess! Your balance is " + to_string(current_balance);
+	}
 
 }
 void Transactions(enButtons button_id)
@@ -112,18 +124,9 @@ void Transactions(enButtons button_id)
 	else {
 		int amount = ReadPositiveNumber("Enter amount: ");
 		string deposite_process = DepositeProcess(7500, amount);
-		cout << deposite_process;
+		cout << deposite_process << endl;
 	}
 }
-
-
-
-
-
-
-
-
-
 
 
 int main()
@@ -139,11 +142,7 @@ int main()
 	if (button_list == Exit)
 		return 0;
 
-
 	Transactions(button_list);
-
-
-
 
 
 

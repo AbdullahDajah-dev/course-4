@@ -1,0 +1,66 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+using namespace std;
+
+enum enPerfect {Perfect = 1, NotPerfect};
+
+int ReadPositiveNumbers(string msg)
+{
+	int number;
+	cout << msg;
+	cin >> number;
+	while (number <= 0)
+	{
+		cout << "Invalid, only positive numbers allowed:\n";
+		cin >> number;
+	}
+
+	return number;
+}
+enPerfect CheckNumber(int number)
+{
+	int sum = 0;
+	int m = number / 2;
+
+	for (int i = 1; i <= m;i++)
+	{
+		if (number % i != 0)
+			continue;
+
+		sum += i;
+	}
+	if (sum == number)
+		return enPerfect::Perfect;
+	else
+		return enPerfect::NotPerfect;
+}
+
+void PrintResult(int number)
+{
+	cout << "Perfect number between 1 and " << number << " are: " << endl;
+
+	for (int i = 1; i <= number;i++)
+		if (CheckNumber(i) == enPerfect::Perfect)
+			cout << i << endl;
+}
+
+
+
+
+
+
+
+
+
+int main()
+{
+	
+	int number = ReadPositiveNumbers("enter number? ");
+	PrintResult(number);
+	
+
+	
+
+	return 0;
+}
